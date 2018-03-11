@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+	<style>
+		* {
+            margin: 0;
+            padding: 0
+        }
+
+        #demo {
+            display: block;
+            width: 400px;
+            height: 255px;
+            margin: 50px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        #small-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        #float-box {
+            display: none;
+            width: 160px;
+            height: 120px;
+            position: absolute;
+            background: #ffffcc;
+            border: 1px solid #ccc;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+        }
+
+        #mark {
+            position: absolute;
+            display: block;
+            width: 400px;
+            height: 255px;
+            background-color: #fff;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #big-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 460px;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;;
+        }
+
+        #big-box img {
+            position: absolute;
+            z-index: 5
+        }
+	</style>
+</head>
+<body>
+	<div id="demo">
+<!--小图片显示区域-->
+    <div id="small-box">
+    <!--mark表示小图片的边界，float-box则代表放大镜的id-->
+        <div id="mark"></div>
+        <div id="float-box"></div>
+        <img src="images/1.jpg"/>
+    </div>
+<!--大图片显示区域-->
+    <div id="big-box">
+        <img src="images/1.jpg"/>
+    </div>
+</div>
+
+	<script>
+		window.onload = function () {
+
+    var objDemo = document.getElementById("demo");
+    var objSmallBox = document.getElementById("small-box");
+    var objMark = document.getElementById("mark");
+    var objFloatBox = document.getElementById("float-box");
+    var objBigBox = document.getElementById("big-box");
+    var objBigBoxImage = objBigBox.getElementsByTagName("img")[0];
+
+    /**
+     * 当鼠标放到小图片上时，图片和放大镜开始进行显示
+     */
+    objMark.onmouseover = function () {
+        objFloatBox.style.display = "block";
+        objBigBox.style.display = "block";
+    };
+
+    /**
+     * 鼠标移出时，就会触发响应的事件，然后放大镜和图片不再显示
+     */
+    objMark.onmouseout = function () {
+        objFloatBox.style.display = "none";
+        objBigBox.style.display = "none";
+    };
+
+    /**
+     * 鼠标滑过的时候，对相关的放大的倍数进行计算后对图片进行输出
+     */
+    objMark.onmousemove = function (ev) {
+
+        var _event = ev || window.event;  //兼容多个浏览器的event参数模式
+
+        /**
+         * 这里的clientX是指鼠标在浏览器中的绝对坐标位置，也就是计算网页中图片的位置。然后进行绝对化的图片显示的过程
+         */
+        var left = _event.clientX - objDemo.offsetLeft - objSmallBox.offsetLeft - objFloatBox.offsetWidth / 2;
+        var top = _event.clientY - objDemo.offsetTop - objSmallBox.offsetTop - objFloatBox.offsetHeight / 2;
+
+        /**
+         * 此段代码是为了对放大镜区域移出mark标记块的时候的处理。
+         * 实现的功能是：放大镜区域只会存在与mark的标记块内部
+         */
+        if (left < 0) {
+            left = 0;
+        } else if (left > (objMark.offsetWidth - objFloatBox.offsetWidth)) {
+            left = objMark.offsetWidth - objFloatBox.offsetWidth;
+        }
+
+        if (top < 0) {
+            top = 0;
+        } else if (top > (objMark.offsetHeight - objFloatBox.offsetHeight)) {
+            top = objMark.offsetHeight - objFloatBox.offsetHeight;
+
+        }
+
+        /**
+         * 设置放大镜出现的位置
+         */
+        objFloatBox.style.left = left + "px";   //oSmall.offsetLeft的值是相对什么而言
+        objFloatBox.style.top = top + "px";
+
+        var percentX = left / (objMark.offsetWidth - objFloatBox.offsetWidth);
+        var percentY = top / (objMark.offsetHeight - objFloatBox.offsetHeight);
+
+        /**
+         * 这里有亮点需要进行注意：
+         * 1.注意负号，因为大图的显示的方向与放大镜的移动方向是相反的
+         * 2.注意相乘的比例值的计算
+         */
+        objBigBoxImage.style.left = -percentX * (objBigBoxImage.offsetWidth - objBigBox.offsetWidth) + "px";
+        objBigBoxImage.style.top = -percentY * (objBigBoxImage.offsetHeight - objBigBox.offsetHeight) + "px";
+    }
+}`
+	</script>
+</body>
+</html>

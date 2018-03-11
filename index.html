@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+	<link rel="stylesheet" href="./css/index.css">
+	<script language="javascript" src="./js/index.js"></script>
+</head>
+<body>
+
+	<!-- 列表及放大处的图片 -->
+    <div id="photos">
+    	<!-- 放大处的图片 -->
+		<div id="mirror">
+	        <!-- 大图 -->
+			<div class="pho" id="pho_1">
+				<img src="./images/1.jpg" alt="photos">
+				<!-- 扫描区 -->
+				<div id="enlarged_area"></div>
+			</div>
+			<!-- 用来放大的大图 -->
+			<div id="b_pho_1" class="b_pho"><img src="./images/1.jpg" alt="big_photos"></div>
+
+
+			<div class="pho" id="pho_2">
+				<img src="./images/2.jpg" alt="photos">
+				<div id="enlarged_area"></div>
+			</div>
+			<div id="b_pho_2" class="b_pho"><img src="./images/2.jpg" alt="big_photos"></div>
+
+
+			<div class="pho" id="pho_3">
+				<img src="./images/3.jpg" alt="photos">
+				<div id="enlarged_area"></div>
+			</div>
+			<div id="b_pho_3" class="b_pho"><img src="./images/3.jpg" alt="big_photos"></div>
+
+
+			<div class="pho" id="pho_4">
+				<img src="./images/4.jpg" alt="photos">
+				<div id="enlarged_area"></div>
+			</div>
+			<div id="b_pho_4" class="b_pho"><img src="./images/4.jpg" alt="big_photos"></div>
+
+
+			<div class="pho" id="pho_5">
+				<img src="./images/5.jpg" alt="photos">
+				<div id="enlarged_area"></div>
+			</div>
+			<div id="b_pho_5" class="b_pho"><img src="./images/5.jpg" alt="big_photos"></div>
+
+
+			<div class="pho" id="pho_6">
+				<img src="./images/6.jpg" alt="photos">
+				<div id="enlarged_area"></div>
+			</div>
+			<div id="b_pho_6" class="b_pho"><img src="./images/6.jpg" alt="big_photos"></div>
+		</div>
+
+		<!-- 缩略图列表 -->
+		<div id="list" class="list_pho">
+			<!-- 小的缩略图 -->
+			<div id="pho_bak"><a href="#" onclick="pho_show('pho_1');"><img src="./images/s1.jpg" alt="photos"></a></div>
+			<div id="pho_bak"><a href="#" onclick="pho_show('pho_2');"><img src="./images/s2.jpg" alt="photos"></a></div>
+			<div id="pho_bak"><a href="#" onclick="pho_show('pho_3');"><img src="./images/s3.jpg" alt="photos"></a></div>
+			<div id="pho_bak"><a href="#" onclick="pho_show('pho_4');"><img src="./images/s4.jpg" alt="photos"></a></div>
+			<div id="pho_bak"><a href="#" onclick="pho_show('pho_5');"><img src="./images/s5.jpg" alt="photos"></a></div>
+			<div id="pho_bak"><a href="#" onclick="pho_show('pho_6');"><img src="./images/s6.jpg" alt="photos"></a></div>
+		</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+/*去除浏览器默认的边框*/
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+#photos {
+	
+	width: 420px;
+	height: 616px;
+	margin:auto;
+	margin-top:50px;
+	position: relative;
+}
+
+#mirror {
+	width: 420px;
+	height: 531px;
+	/*background-color: red;*/
+	position: relative;
+	overflow: hidden;
+}
+
+/*mirror下面的div孩子元素，除第一个外，其余都不显示*/
+#mirror div:not(:first-child) {
+	display: none;
+}
+
+.pho img {
+	position: absolute;
+	width: 420px;
+	height: 531px;
+	z-index: 2;
+	/*overflow: hidden;*/
+}
+
+.b_pho {
+	display: none;
+}
+
+.b_pho img{
+	position: absolute;
+	/*float: left;*/
+	width: 1050px;
+	height: 1268px;
+	z-index: 1;
+}
+
+#enlarged_area {
+	position: absolute;
+	cursor: crosshair;
+	width: 140px;
+	height: 177px;
+	opacity: 0;
+	/*z-index: 2;*/
+}
+
+#mirror img:hover {
+	cursor: crosshair;
+	/*opacity: 0;*/
+
+}
+
+.list_pho {
+	position: relative;
+	width: 426px;
+	height: 79px;
+	overflow: hidden;
+	margin-top:3px;
+}
+
+#pho_bak {
+	width: 62px;
+	height: 78px;
+	float: left;
+	margin: 0 8px 0 0;
+}
+
+.list_pho img:hover {
+	border-color: red;
+}
+
+.list_pho img{
+	float: left;
+	width: 66px;
+	height: 75px;
+	cursor: pointer;
+	border-style: solid;
+    border-width: 1px;
+    border-color: transparent;
+}
+
